@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"strings"
 )
 
 var omitNewline = flag.Bool("n", false, "Do not print the trailing newline character.")
@@ -14,15 +15,7 @@ const (
 
 func main() {
 	flag.Parse()
-
-	var s string = ""
-
-	for i := 0; i < flag.NArg(); i++ {
-		if i > 0 {
-			s += Space
-		}
-		s += flag.Arg(i)
-	}
+	var s string = strings.Join(flag.Args(), Space)
 
 	if !*omitNewline {
 		s += Newline
